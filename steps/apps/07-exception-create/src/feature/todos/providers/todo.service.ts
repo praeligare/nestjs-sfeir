@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { ResourceNotFoundException } from 'apps/07-exception-create/src/shared/exception/not-found.exception';
 import { TODOS_LIST } from '../constants/todos-list';
 import { Todo } from '../models/todo.model';
 
@@ -10,14 +11,13 @@ export class TodoService {
 
   getTodo(idTodo: number): Todo {
     const todo = TODOS_LIST.find(({ id }) => id === idTodo);
-    if (!todo) {
-      throw new NotFoundException();
-    }
-    return todo;
+    if (!todo) throw new ResourceNotFoundException(`${idTodo}`);
+    else return todo;
   }
 
   deleteTodo(idTodo: number): void {
     const indexTodo: number = TODOS_LIST.findIndex(({ id }) => id === idTodo);
-    TODOS_LIST.splice(indexTodo, 1);
+    if (indexTodo === -1) throw new ResourceNotFoundException(`${idTodo}`)
+    else TODOS_LIST.splice(indexTodo, 1);
   }
 }
