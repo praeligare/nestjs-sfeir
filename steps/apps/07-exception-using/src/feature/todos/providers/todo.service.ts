@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { TODOS_LIST } from '../constants/todos-list';
 import { Todo } from '../models/todo.model';
 
@@ -9,11 +9,14 @@ export class TodoService {
   }
 
   getTodo(idTodo: number): Todo {
-    return TODOS_LIST.find(({ id }) => id === idTodo);
+    const todo = TODOS_LIST.find(({ id }) => id === idTodo);
+    if (!todo) throw new NotFoundException;
+    else return todo;
   }
 
   deleteTodo(idTodo: number): void {
     const indexTodo: number = TODOS_LIST.findIndex(({ id }) => id === idTodo);
-    TODOS_LIST.splice(indexTodo, 1);
+    if (indexTodo === -1) throw new NotFoundException;
+    else TODOS_LIST.splice(indexTodo, 1);
   }
 }
