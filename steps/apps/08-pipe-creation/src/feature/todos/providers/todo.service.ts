@@ -17,6 +17,11 @@ export class TodoService {
     return todo;
   }
 
+  addTodo(todo: Todo): Todo {
+    TODOS_LIST.push(todo);
+    return todo;
+  }
+ 
   deleteTodo(idTodo: number): void {
     const indexTodo: number = TODOS_LIST.findIndex(({ id }) => id === idTodo);
     if (indexTodo === -1) throw new RessourceNotFoundException(idTodo);

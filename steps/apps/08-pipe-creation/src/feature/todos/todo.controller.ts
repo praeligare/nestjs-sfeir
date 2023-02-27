@@ -1,5 +1,6 @@
-import { Controller, Delete, Get, HttpCode, Param, ParseIntPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpException, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { Todo } from './models/todo.model';
+import { TodoValidationPipe } from './pipes/todo.validation.pipe';
 import { TodoService } from './providers/todo.service';
 
 @Controller('/api/todos')
@@ -16,6 +17,12 @@ export class TodoController {
   @HttpCode(200)
   getTodo(@Param('id', ParseIntPipe) idTodo: number): Todo {
     return this.todoService.getTodo(idTodo);
+  }
+
+  @Post()
+  @HttpCode(201)
+  addTodo(@Body(new TodoValidationPipe()) body: Todo): Todo | HttpException {
+    return this.todoService.addTodo(body);
   }
 
   @Delete(':id')
