@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, NotAcceptableException, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { TodoDTO } from './dto/todo.dto';
 import { Todo } from './models/todo.model';
 import { TodoService } from './providers/todo.service';
 
@@ -14,7 +15,7 @@ export class TodoController {
 
   @Post()
   @HttpCode(201)
-  createTodo(@Body() todo: Omit<Todo, 'id'>): number | NotAcceptableException {
+  createTodo(@Body() todo: TodoDTO): number | NotAcceptableException {
     return this.todoService.createTodo(todo);
   }
 
