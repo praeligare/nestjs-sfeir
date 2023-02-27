@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export class RessourceNotFoundException<T> extends HttpException {
-  constructor(idRessource: T) {
-    super(`Ressource ${idRessource} seems not exist`, HttpStatus.NOT_FOUND);
+export class ResourceNotFoundException<T> extends HttpException {
+  constructor(idResource: T) {
+    super(`Resource ${idResource} seems to not exist`, HttpStatus.NOT_FOUND);
   }
 }
