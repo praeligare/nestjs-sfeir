@@ -3,7 +3,7 @@ import { CoreModule } from './core/core.module';
 import { TodosModule } from './feature/todos/todos.module';
 
 @Module({
-  imports: [CoreModule, TodosModule],
+  imports: [TodosModule, CoreModule],
   controllers: [],
   providers: [],
 })

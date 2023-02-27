@@ -6,5 +6,6 @@ import { TodoController } from './todo.controller';
   imports: [],
   controllers: [TodoController],
   providers: [TodoService],
+  exports: [TodoService]
 })
 export class TodosModule {}
