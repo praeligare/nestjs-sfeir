@@ -1,9 +1,9 @@
 import { Controller, Delete, Get, HttpCode, Param } from '@nestjs/common';
-import { Todo } from './shared/models/todo.model';
-import { TodoService } from './shared/providers/todo.service';
+import { Todo } from './models/todo.model';
+import { TodoService } from './providers/todo.service';
 
 @Controller('/api/todos')
-export class AppController {
+export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Get()

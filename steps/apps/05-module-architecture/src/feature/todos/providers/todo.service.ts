@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TODOS_LIST } from '../constants/todos-list';
+import { TODOS_LIST } from '../../../shared/constants/todos-list';
 import { Todo } from '../models/todo.model';
 
 @Injectable()
